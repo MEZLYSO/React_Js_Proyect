@@ -5,13 +5,14 @@ import Guitar from "./components/Guitar"
 
 function App() {
 
-  //state 
-  const [auth /*Variable*/,setAuth/*Funcion*/] = useState(false)
+  //Hooks 
+  const [auth /*Variable*/,setAuth/*Funcion*/] = useState(false) /*Valor inicial */
+  const [total, setTotal] = useState(0)
+  const [cart,setCart] = useState([])
 
   return (
     <>
     <Header />
-    
 
     <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
