@@ -7,6 +7,7 @@ import Guitar from "./components/Guitar"
 function App() {
 
   const [data,setData] = useState(db)
+  const [cart,setCart] = useState([])
 
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
               <Guitar 
               key={item.id}
               guitar={item}
+              setCart={setCart}
               />
           ))}
           
