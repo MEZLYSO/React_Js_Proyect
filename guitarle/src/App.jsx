@@ -1,14 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
+import { db } from "./data/db"
 import Header from "./components/Header"
 import Guitar from "./components/Guitar"
 
 function App() {
 
-  //Hooks 
-  const [auth /*Variable*/,setAuth/*Funcion*/] = useState(false) /*Valor inicial */
-  const [total, setTotal] = useState(0)
-  const [cart,setCart] = useState([])
+  const [data,setData] = useState(db)
 
   return (
     <>
@@ -18,7 +16,13 @@ function App() {
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-          <Guitar />
+          {data.map((item)=>(
+              <Guitar 
+              key={item.id}
+              guitar={item}
+              />
+          ))}
+          
         </div>
     </main>
 
