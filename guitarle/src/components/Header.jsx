@@ -1,10 +1,11 @@
 // Podemos importar librerias en esta seccion
+import { useMemo } from "react"
 
-function Header({cart}){
+function Header({cart, removeFromCart,incrementQuantity,decrementQuantity}){
 
     //States derivados
-    const isEmpty=()=> cart.length === 0
-    const cartTotal =()=> cart.reduce((total,item)=>total+(item.quantity*item.price),0)
+    const isEmpty= useMemo(()=>cart.length === 0,[cart])
+    const cartTotal = useMemo(()=> cart.reduce((total,item)=>total+(item.quantity*item.price),0),[cart])
 
     return (
         // En esta seccion va la vista
@@ -23,7 +24,7 @@ function Header({cart}){
                         <img className="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
 
                         <div id="carrito" className="bg-white p-3">
-                            {isEmpty() ?(
+                            {isEmpty ?(
                                 <p className="text-center">El carrito esta vacio</p>
                             ):(
                                 <>
@@ -54,6 +55,7 @@ function Header({cart}){
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={()=>decrementQuantity(item.id)}
                                                 >
                                                 -
                                             </button>
@@ -61,6 +63,7 @@ function Header({cart}){
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={()=>incrementQuantity(item.id)}
                                             >
                                                 +
                                             </button>
@@ -69,6 +72,7 @@ function Header({cart}){
                                             <button
                                                 className="btn btn-danger"
                                                 type="button"
+                                                onClick={()=> removeFromCart(item.id)}
                                                 >
                                                 X
                                             </button>
@@ -78,7 +82,7 @@ function Header({cart}){
                                     })}
                                 </tbody>
                             </table>
-                            <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal()}</span></p>
+                            <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
                             <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
                             </>
                             )

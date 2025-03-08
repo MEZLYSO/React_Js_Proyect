@@ -10,6 +10,8 @@ function App() {
   const [data,setData] = useState(db)
   const [cart,setCart] = useState([])
 
+  const MAX_ITEMS = 5
+
   function addToCart(item) {
     const itemExist = cart.findIndex(guitar => guitar.id === item.id)
     if (itemExist>=0) { //Existe en el carrito
@@ -21,11 +23,45 @@ function App() {
       setCart([...cart,item]) // Sete el nuevo carrito con el item añadido
     }
   }
+
+  function removeFromCart(id) {
+    setCart(prevCart=>prevCart.filter(guitar => guitar.id !== id))
+  }
+
+  function incrementQuantity(id) {
+    const updateCart = cart.map(item=>{
+      if (item.id===id && item.quantity < MAX_ITEMS) {
+        return{
+          ...item,
+          quantity:item.quantity+1
+        }
+      }
+      return item
+    })
+    setCart(updateCart)
+  }
+
+  function decrementQuantity(id) {
+    const updateCart = cart.map((item)=>{
+      if (item.id===id && item.quantity>1) {
+        return{
+          ...item,
+          quantity:item.quantity-1
+        }
+      }
+      return item
+    })
+    setCart(updateCart)
+  }
+
+
   return (
     <>
     <Header 
-    
     cart={cart}
+    removeFromCart={removeFromCart}
+    incrementQuantity={incrementQuantity}
+    decrementQuantity={decrementQuantity}
     
     />
 
