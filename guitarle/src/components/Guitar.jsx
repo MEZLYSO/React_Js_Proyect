@@ -1,6 +1,3 @@
-
- 
-
 export default function Guitar({guitar,setCart}){
 
     const {id,name,price,description,image} = guitar
