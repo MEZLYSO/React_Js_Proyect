@@ -1,7 +1,7 @@
 // Podemos importar librerias en esta seccion
 import { useMemo } from "react"
 
-function Header({cart, removeFromCart,incrementQuantity,decrementQuantity}){
+function Header({cart, removeFromCart,incrementQuantity,decrementQuantity,clearCart}){
 
     //States derivados
     const isEmpty= useMemo(()=>cart.length === 0,[cart])
@@ -83,7 +83,7 @@ function Header({cart, removeFromCart,incrementQuantity,decrementQuantity}){
                                 </tbody>
                             </table>
                             <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
-                            <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                            <button onClick={clearCart} className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
                             </>
                             )
                             }
