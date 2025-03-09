@@ -1,11 +1,6 @@
-// Podemos importar librerias en esta seccion
-import { useMemo } from "react"
+import useCart from "../hooks/useCart"
 
-function Header({cart, removeFromCart,incrementQuantity,decrementQuantity,clearCart}){
-
-    //States derivados
-    const isEmpty= useMemo(()=>cart.length === 0,[cart])
-    const cartTotal = useMemo(()=> cart.reduce((total,item)=>total+(item.quantity*item.price),0),[cart])
+function Header({cart, removeFromCart,incrementQuantity,decrementQuantity,clearCart,isEmpty,cartTotal}){
 
     return (
         // En esta seccion va la vista
